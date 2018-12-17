@@ -5,3 +5,4 @@ const sumStringOfNums = string =>
     .reduce((sum, next) => sum + next)
 
 module.exports = { sumStringOfNums }
+//TODO: Include leading digits that don't start with a plus sign.

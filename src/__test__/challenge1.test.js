@@ -1,4 +1,4 @@
-const { sumStringOfNums } = require('../lib/challenge1')
+const { sumStringOfNums } = require('../lib/sumStringOfNums')
 
 describe('reduces a string of numbers to a sum ', () => {
   test('adds "+1+2" to be 3', () => {
@@ -17,11 +17,3 @@ describe('reduces a string of numbers to a sum ', () => {
     expect(sumStringOfNums('1+2')).toBe(2)
   })
 })
-
-// test('reduces [1, 2, 3, -1] to 5', () => {
-//   expect(summarize([1, 2, 3, -1])).toBe(5)
-// })
-
-// test('adds 1 + 2 to eqaul 3', () => {
-//   expect(summarize(1, 2)).toBe(3)
-// })

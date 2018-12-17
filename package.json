@@ -19,8 +19,6 @@
   "homepage": "https://github.com/KostasLib/advent-of-code-2k18#readme",
   "devDependencies": {
     "eslint": "^5.10.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^22.1.2",
     "jest": "^23.6.0"
   }

@@ -1,20 +1,13 @@
-// const sumStringOfNums = string =>
-//   string
-//     .match(/\++\d*|-+\d*/g)
-//     .map(i => parseInt(i))
-//     .reduce((sum, next) => sum + next)
-
-/**@param {string} string Serialized numeric values into a string.
+/**@param {string} string Concatenated serialized signed numeric values.
  * @returns {number[]}
  */
 const deserializeNumInput = string =>
   string.match(/\++\d*|-+\d*/g).map(val => parseInt(val))
 
-/**@param {number[]} arrayOfNums
- * @returns {number}
- */
+/** @param {number[]} arrayOfNums */
 const summarize = arrayOfNums => arrayOfNums.reduce((sum, next) => sum + next)
 
+/** @param {string} serializedInput */
 const sumStringOfNums = serializedInput =>
   summarize(deserializeNumInput(serializedInput))
 

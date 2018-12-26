@@ -13,13 +13,13 @@ const deserialize = (string, idLength, hasLineBreak = true) => {
   for (let i = 0; i < numberOfIds; i++) {
     const start = i * step
     const finish = start + idLength
-    const newString = string.slice(start, finish)
-    arrayOfIds.push(newString)
+    const id = string.slice(start, finish)
+    arrayOfIds.push(id)
   }
 
   // for (let i = 0; i < string.length; i += step) {
-  //   let newString = string.slice(i, i + idLength)
-  //   array.push(newString)
+  //   let id = string.slice(i, i + idLength)
+  //   array.push(id)
   // }
 
   return arrayOfIds

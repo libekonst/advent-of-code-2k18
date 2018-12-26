@@ -1,8 +1,6 @@
-const {
-  sumStringOfNums,
-  deserializeNumInput,
-  summarize
-} = require('../lib/sumStringOfNums')
+// import { sumStringOfNums } from './index'
+const { sumStringOfNums } = require('./')
+const { summarize, deserializeNumInput } = require('./transformers')
 
 describe('reduces a string of serialized signed numeric inputs to a sum ', () => {
   test('adds "+1+2" to be 3', () => {

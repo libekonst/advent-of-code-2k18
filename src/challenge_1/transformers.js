@@ -7,9 +7,4 @@ const deserializeNumInput = string =>
 /** @param {number[]} arrayOfNums */
 const summarize = arrayOfNums => arrayOfNums.reduce((sum, next) => sum + next)
 
-/** @param {string} serializedInput */
-const sumStringOfNums = serializedInput =>
-  summarize(deserializeNumInput(serializedInput))
-
-module.exports = { sumStringOfNums, deserializeNumInput, summarize }
-//TODO: Include leading digits that don't start with a plus sign.
+module.exports = { deserializeNumInput, summarize }

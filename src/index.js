@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-// @ts-ignore
 const challenge1 = require('./challenge_1')
 
 const answers = {

@@ -1,12 +1,4 @@
-// import { summarize, deserializeNumInput } from './transformers'
-const { summarize, deserializeNumInput } = require('./transformers')
-const data = require('./data')
+const input = require('./input')
+const summarize = require('./summarize')
 
-/** @param {string} serializedInput */
-const sumStringOfNums = serializedInput =>
-  summarize(deserializeNumInput(serializedInput))
-
-const solution = sumStringOfNums(data)
-
-module.exports = { solution, sumStringOfNums }
-//TODO: Include leading digits that don't start with a plus sign.
+module.exports = summarize(input)

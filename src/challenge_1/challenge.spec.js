@@ -1,27 +1,18 @@
-// import { sumStringOfNums } from './index'
-const { sumStringOfNums } = require('./')
-const { summarize, deserializeNumInput } = require('./transformers')
+const summarize = require('./summarize')
+const deserializeNumInput = require('./transformer')
 
 describe('reduces a string of serialized signed numeric inputs to a sum ', () => {
   test('adds "+1+2" to be 3', () => {
-    expect(sumStringOfNums('+1+2')).toBe(3)
+    expect(summarize('+1 +2')).toBe(3)
   })
 
   test('adds "-1-2+1" to be -2', () => {
-    expect(sumStringOfNums('-1-2+1')).toBe(-2)
+    expect(summarize('-1 -2 +1')).toBe(-2)
   })
 
-  test('ignores non numbers, adding "+1+2ab+3" to 6', () => {
-    expect(sumStringOfNums('+1+2ab+3')).toBe(6)
+  test('ignores non numbers, adding "+1 +2ab +3 cde554" to 6', () => {
+    expect(summarize('+1 +2ab +3 cde554')).toBe(6)
   })
-
-  test('ignores unsigned leading numbers, causing "1+2" to be 2', () => {
-    expect(sumStringOfNums('1+2')).toBe(2)
-  })
-})
-
-test('reduces an array of numbers to a sum, causing [1,2,3] to equal 6', () => {
-  expect(summarize([1, 2, 3])).toBe(6)
 })
 
 describe('decodes a string of concatenated signed numeric inputs into an array of numbers', () => {

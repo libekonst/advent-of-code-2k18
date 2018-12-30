@@ -1,4 +1,4 @@
-const data = require('./data')
-const deserialize = require('./deserialize')
+const input = require('./input')
+const deserialize = require('../deserialize')
 
-console.log(deserialize(data, 26))
+console.log(deserialize(input))

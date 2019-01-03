@@ -1,7 +1,12 @@
 const deserialize = require('./deserialize')
-const { countOccurances, checksum, hasTwoOrThree } = require('./transformers')
+const { countOccurances, hasTwoOrThree } = require('./transformers')
+const { checksum, duplicatesCounter } = require('./checksum')
 
-const { updateTracker, discardDuplicates } = require('./reducers')
+const {
+  updateTracker,
+  discardDuplicates,
+  updateCounter
+} = require('./reducers')
 
 describe('It transforms a string of concatenated same-length inputs to an array of strings', () => {
   test('transforms `111222333` to [`111`,`222`,`333`]', () => {
@@ -21,7 +26,7 @@ describe('Returns the number of occurances in a string for the given value', () 
 
 describe('Multiplies all values to produce a checksum', () => {
   test('calculates {a: 2, b:3} and returns 6 ', () => {
-    expect(checksum({ a: 2, b: 3 })).toBe(6)
+    expect(checksum({ twos: 2, threes: 3 })).toBe(6)
   })
 })
 
@@ -54,7 +59,40 @@ describe('Checks if an array includes a given value and appends it if it doesn\'
   test('Adds "c" to ["a", "b"]', () => {
     expect(discardDuplicates(['a', 'b'], 'c')).toEqual(['a', 'b', 'c'])
   })
-  test('Discards "c" because it is already included in ["a", "b", "c"]', () => {
-    expect(discardDuplicates(['a', 'b', 'c'], 'c')).toEqual(['a', 'b', 'c'])
+  test('Discards "b" because it is already included in ["a", "b", "c"]', () => {
+    expect(discardDuplicates(['a', 'b', 'c'], 'b')).toEqual(['a', 'b', 'c'])
+  })
+})
+
+describe('Increments the counter based on the tracker\'s properties', () => {
+  test('Increments {twos: 1, threes: 1} to {{twos: 2, threes: 2}}', () => {
+    expect(
+      updateCounter({ twos: 1, threes: 1 }, { hasTwo: true, hasThree: true })
+    ).toEqual({ twos: 2, threes: 2 })
+  })
+  test('Increments {twos: 1, threes: 1} to {{twos: 2, threes: 1}}', () => {
+    expect(
+      updateCounter({ twos: 1, threes: 1 }, { hasTwo: true, hasThree: false })
+    ).toEqual({ twos: 2, threes: 1 })
+  })
+  test('Increments {twos: 1, threes: 1} to {{twos: 1, threes: 2}}', () => {
+    expect(
+      updateCounter({ twos: 1, threes: 1 }, { hasTwo: false, hasThree: true })
+    ).toEqual({ twos: 1, threes: 2 })
+  })
+})
+
+describe('Counts the number of elements that have exactly two or exactly three of any char', () => {
+  test('Calculates ["abab", "cccdd"] and returns { twos: 2, threes: 1 }', () => {
+    expect(duplicatesCounter(['abab', 'cccdd'])).toEqual({ twos: 2, threes: 1 })
+  })
+  test('Calculates ["abb", "cccdd"] and returns { twos: 1, threes: 1 }', () => {
+    expect(duplicatesCounter(['abb', 'cccdd'])).toEqual({ twos: 2, threes: 1 })
+  })
+  test('Calculates ["ababa", "cccdd"] and returns { twos: 2, threes: 2 }', () => {
+    expect(duplicatesCounter(['ababa', 'cccdd'])).toEqual({
+      twos: 2,
+      threes: 2
+    })
   })
 })

@@ -1,4 +1,7 @@
 const input = require('./input')
-const deserialize = require('../deserialize')
+const parseInput = require('../parseInput')
+const { checksum, duplicatesCounter } = require('./checksum')
 
-console.log(deserialize(input))
+const data = parseInput(input)
+
+module.exports = checksum(duplicatesCounter(data))

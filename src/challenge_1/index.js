@@ -1,4 +1,6 @@
 const input = require('./input')
-const summarize = require('./summarize')
+const sumNumbersFromString = require('./sumNumbersFromString')
 
-module.exports = summarize(input)
+const part1 = sumNumbersFromString(input)
+
+module.exports = { part1 }

@@ -1,18 +1,18 @@
-const sumNumbersFromString = require('./sumNumbersFromString')
+const prepareData = require('./prepareData')
 const deserializeNumInput = require('./deserialize')
 const { parseNumbers, summarize, and } = require('./transformers')
 
-describe('reduces a string of numbers to a sum ', () => {
-  test('adds "1+2" to be 3', () => {
-    expect(sumNumbersFromString('1 +2')).toBe(3)
+describe('transforms a string of numbers to an array, filtering out NaN values ', () => {
+  test('transforms "1 +2" to be [1,2]', () => {
+    expect(prepareData('1 +2')).toEqual([1, 2])
   })
 
-  test('adds "-1-2+1" to be -2', () => {
-    expect(sumNumbersFromString('-1 -2 +1')).toBe(-2)
+  test('transforms "-1 -2 +1" to be [-1,-2, 1]', () => {
+    expect(prepareData('-1 -2 +1')).toEqual([-1, -2, 1])
   })
 
-  test('ignores non numbers, adding "+1 +2ab +3 cde554" to 6', () => {
-    expect(sumNumbersFromString('+1 +2ab +3 cde554')).toBe(6)
+  test('ignores non numbers, transforming "+1 +2ab +3 cde554" to [1, 2, 3]', () => {
+    expect(prepareData('+1 +2ab +3 cde554')).toEqual([1, 2, 3])
   })
 })
 

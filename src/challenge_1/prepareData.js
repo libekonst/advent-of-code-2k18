@@ -1,13 +1,12 @@
 const parseInput = require('../parseInput')
-const { parseNumbers, summarize } = require('./transformers')
+const { parseNumbers } = require('./transformers')
 
 /** @param {string} input */
-const sumNumbersFromString = input => {
+const prepareData = input => {
   const values = parseInput(input)
   const isNotNaN = val => !isNaN(val)
   const preparedData = parseNumbers(values, [isNotNaN])
-
-  return summarize(preparedData)
+  return preparedData
 }
 
-module.exports = sumNumbersFromString
+module.exports = prepareData

@@ -1,6 +1,9 @@
 const input = require('./input')
-const sumNumbersFromString = require('./sumNumbersFromString')
+const prepareData = require('./prepareData')
+const { summarize } = require('./transformers')
 
-const part1 = sumNumbersFromString(input)
+const data = prepareData(input)
+const part1 = summarize(data)
+const part2 = null
 
-module.exports = { part1 }
+module.exports = { part1, part2 }

@@ -1,4 +1,4 @@
-module.exports = `qysdgimlcaghpfozuwejmhrbvx
+export default `qysdgimlcaghpfozuwejmhrbvx
 qysdtiklcagnpfhzuwbjmhrtvx
 qysdtiflcsgnpfozuwejmhruvx
 qkshtiklnagnpfozuwejmhrbvx

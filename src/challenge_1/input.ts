@@ -1,4 +1,4 @@
-module.exports = `+11 +14
+export default `+11 +14
 +10
 -8
 -13

@@ -1,6 +1,6 @@
 const prepareData = require('./prepareData')
 const deserializeNumInput = require('./deserialize')
-const { parseNumbers, summarize, and } = require('./transformers')
+const { parseNumbers, summarize, and } = require('./parseNumbers')
 
 describe('transforms a string of numbers to an array, filtering out NaN values ', () => {
   test('transforms "1 +2" to be [1,2]', () => {

@@ -1,6 +1,6 @@
 import { sum } from '../lib/array_operations';
 import input from './input';
-import prepareData from './prepareData';
+import { prepareData } from './prepareData';
 
 const data = prepareData(input);
 const part1 = sum(data);

@@ -1,6 +1,5 @@
-import { not } from '../lib/predicates';
+import { every, not, Predicate } from '../lib/predicates';
 import parseInput from '../parseInput';
-import { parseNumbers } from './parseNumbers';
 
 const prepareData = (input: string): number[] => {
   const values = parseInput(input);
@@ -8,4 +7,11 @@ const prepareData = (input: string): number[] => {
   return preparedData;
 };
 
-export default prepareData;
+/** Converts an array of strings to an array of integers and returns only those that satisfy the provided conditions. */
+const parseNumbers = (values: string[], conditions: Predicate<number>[]): number[] => {
+  const parsed = values.map(val => parseInt(val, 10));
+  const filtered = parsed.filter(every(conditions));
+  return filtered;
+};
+
+export { prepareData };

@@ -5,4 +5,4 @@ function not<T>(func: Predicate<T>): Predicate<T> {
   return (target: T) => !func(target);
 }
 
-export { not };
+export default not;

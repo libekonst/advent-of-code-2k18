@@ -1,5 +1,4 @@
-import { Predicate } from '../lib/predicates';
-import { every } from '../lib/predicates/index';
+import { every, Predicate } from '../lib/predicates';
 
 /** Converts an array of strings to an array of integers and returns only those that satisfy the provided conditions. */
 function parseNumbers(values: string[], conditions: Predicate<number>[]): number[] {

@@ -5,10 +5,10 @@ export const getChecksum = (counter: ITracker): number => {
   return Object.values(counter).reduce((a, b) => a * b, 1);
 };
 
-export const duplicatesCounter = (arrayOfInputs: string[], duplicates: number[]) => {
+export const duplicatesCounter = (arrayOfInputs: string[], exactTimes: number[]) => {
   return arrayOfInputs
-    .map(hasExactly(duplicates))
-    .reduce(updateCounter, getTrackerFromArray(duplicates));
+    .map(hasExactly(exactTimes))
+    .reduce(updateCounter, getTrackerFromArray(exactTimes));
 };
 
 const updateCounter = (counter: ITracker, tracker: IExact): ITracker => {

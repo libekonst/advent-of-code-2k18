@@ -1,7 +1,7 @@
 import { every, not, Predicate } from '../lib/predicates';
 import parseInput from '../parseInput';
 
-const prepareData = (input: string): number[] => {
+export const prepareData = (input: string): number[] => {
   const values = parseInput(input);
   const preparedData = parseNumbers(values, [not(isNaN)]);
   return preparedData;
@@ -13,5 +13,3 @@ const parseNumbers = (values: string[], conditions: Predicate<number>[]): number
   const filtered = parsed.filter(every(conditions));
   return filtered;
 };
-
-export { prepareData };

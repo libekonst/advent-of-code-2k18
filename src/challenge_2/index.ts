@@ -1,9 +1,10 @@
 import parseInput from '../parseInput';
-import { checksum, duplicatesCounter } from './checksum';
+import { duplicatesCounter, getChecksum } from './checksum';
+import { ITracker } from './frequency';
 import input from './input';
-import { Counter } from './reducers';
+// import { ICounter } from './reducers';
 
 const data = parseInput(input);
-const counter: Counter = duplicatesCounter(data);
+const counter: ITracker = duplicatesCounter(data);
 
-export default checksum(counter);
+export default getChecksum(counter);

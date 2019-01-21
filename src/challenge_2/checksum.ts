@@ -24,5 +24,6 @@ const updateCounter = (counter: ITracker, tracker: IExact): ITracker => {
 //   2: tracker['2'] ? counter['2'] + 1 : counter['2'],
 // });
 
-const getTrackerFromArray = (arr: any[], init = 0): ITracker =>
-  arr.reduce((tracker, value) => ({ ...tracker, [value]: init }), {});
+const getTrackerFromArray = (arr: any[], init = 0): ITracker => {
+  return arr.reduce((tracker, value) => ({ ...tracker, [value]: init }), {});
+};

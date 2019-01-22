@@ -1,4 +1,4 @@
-const prepareData = require('./prepareData')
+const prepareData = require('./summarize')
 const deserializeNumInput = require('./deserialize')
 const { parseNumbers, summarize, and } = require('./parseNumbers')
 

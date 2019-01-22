@@ -1,9 +1,7 @@
-import { sum } from '../lib/array_operations';
 import input from './input';
-import { prepareData } from './prepareData';
+import { summarized } from './summarize';
 
-const data = prepareData(input);
-const part1 = sum(data);
+const part1 = summarized(input);
 const part2: any = null;
 
 export { part1, part2 };

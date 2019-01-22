@@ -1,10 +1,12 @@
+import { sum } from '../lib/array_operations';
 import { every, not, Predicate } from '../lib/predicates';
 import parseInput from '../parseInput';
 
-export const prepareData = (input: string): number[] => {
+export const summarized = (input: string): number => {
   const values = parseInput(input);
-  const preparedData = parseNumbers(values, [not(isNaN)]);
-  return preparedData;
+  const parsed = parseNumbers(values, [not(isNaN)]);
+
+  return sum(parsed);
 };
 
 /** Converts an array of strings to an array of integers and returns only those that satisfy the provided conditions. */

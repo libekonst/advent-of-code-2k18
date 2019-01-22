@@ -1,5 +1,5 @@
 import { multiply } from '../lib/array_operations';
-import { countDuplicates } from './duplicates';
+import { countDuplicates } from './reducers/duplicates';
 
 /** Generates a checksum by counting specific duplicates and multiplying the values. */
 export const checksum = (data: string[]): number => {

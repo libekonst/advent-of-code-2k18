@@ -1,5 +1,6 @@
 import { hasExactly, IExact } from './exact';
-import { ITracker } from './frequency';
+import { ITracker, trackerFromArray } from './tracker';
+
 /** Calculates a checksum by mutliplying the counter's values. */
 export const getChecksum = (counter: ITracker): number => {
   return Object.values(counter).reduce((a, b) => a * b, 1);
@@ -8,22 +9,12 @@ export const getChecksum = (counter: ITracker): number => {
 export const duplicatesCounter = (arrayOfInputs: string[], exactTimes: number[]) => {
   return arrayOfInputs
     .map(hasExactly(exactTimes))
-    .reduce(updateCounter, getTrackerFromArray(exactTimes));
+    .reduce(updateCounter, trackerFromArray(exactTimes));
 };
 
-const updateCounter = (counter: ITracker, tracker: IExact): ITracker => {
-  const keys = Object.keys(counter);
-  const newTracker = keys.reduce((acc, next) => {
-    return { ...acc, [next]: tracker[next] ? acc[next] + 1 : acc[next] };
-  }, counter);
+const updateCounter = (counter: ITracker, exact: IExact): ITracker => {
+  const callback = (tracker: ITracker, value: string) =>
+    exact[value] ? tracker[value] + 1 : tracker[value];
 
-  return newTracker;
-};
-// return (counter: ITracker, tracker: IExact): ITracker => ({
-//   3: tracker['3'] ? counter['3'] + 1 : counter['3'],
-//   2: tracker['2'] ? counter['2'] + 1 : counter['2'],
-// });
-
-const getTrackerFromArray = (arr: any[], init = 0): ITracker => {
-  return arr.reduce((tracker, value) => ({ ...tracker, [value]: init }), {});
+  return trackerFromArray(Object.keys(counter), callback, counter);
 };

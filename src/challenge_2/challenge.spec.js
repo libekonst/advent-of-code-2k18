@@ -1,6 +1,6 @@
 const deserialize = require('./deserialize')
 const { countOccurances, hasTwoOrThree } = require('./frequency')
-const { getChecksum: checksum, countDuplicates: duplicatesCounter } = require('./checksum')
+const { checksum: checksum, countDuplicates: duplicatesCounter } = require('./checksum')
 
 const {
   updateTracker,

@@ -1,19 +1,21 @@
-export interface ITracker {
-  [trackValue: string]: number;
+interface ITracker<P> {
+  [trackValue: string]: P;
 }
 
-type CalcValue<V> = (tracker: ITracker, property: V) => any;
+type CalcValue<T, U> = (tracker: ITracker<U>, property: T) => U;
 
-export const trackerFromArray = <T>(
-  arr: T[],
-  getValue: CalcValue<T> = x => 0,
-  initialValue = {},
-) => {
-  return arr.reduce(
+const trackerFromArray = <T, U>(
+  sourceArray: T[],
+  calcValue: (tracker: ITracker<U>, property: T) => U = y => 0 as any,
+  initialTracker: ITracker<U> = {},
+): ITracker<U> => {
+  return sourceArray.reduce(
     (tracker, property) => ({
       ...tracker,
-      [property as any]: getValue(tracker, property),
+      [property as any]: calcValue(tracker, property),
     }),
-    initialValue,
+    initialTracker,
   );
 };
+
+export { trackerFromArray, ITracker };

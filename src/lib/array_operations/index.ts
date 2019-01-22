@@ -1,3 +1,4 @@
+import { multiply } from './multiply';
 import { sum } from './sum';
 
-export { sum };
+export { multiply, sum };

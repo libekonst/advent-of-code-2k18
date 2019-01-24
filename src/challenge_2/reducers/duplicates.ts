@@ -8,28 +8,21 @@ import { IMapped, objectFromArray } from './objectFromArray';
  * that precision was satisfied as the value, i.e. `{ "2": 15, "3": 10 }`.
  * @param input An array of strings to be checked for duplicates based on the `precision` arg.
  * @param precision The number of exact repetitions the caller is interested in.
- * @returns `IMapped<number>` An object with `precision` as the keys and the times each `precision`
- * was satisfied as the values.
+ * @returns `IMapped<number>` An object counting the times `precision` was satisfied.
  */
 export const countDuplicates = (input: string[], precision: number[]) => {
   const bools = input.map(hasExactly(precision));
-  const timesSatisfied = bools.reduce(updateCounter, objectFromArray(precision));
-  return timesSatisfied;
+  return precisionTracker(bools, precision);
 };
 
 /**
- * Increments an `IMapped<number>` object's values, based on whether `true` is encountered in
- * the `satisfied` param.
- * @param counter An object counting the times `precision` was satisfied.
- * @param satisfied An object defining whether each precision was satisfied.
- * @returns A new `IMapped<number>` with updated values.
+ * Transforms an array of `IMapped<boolean>` objects to an `IMapped<number>`, counting the times
+ * each `precision` value was satisfied (`true` was encountered).
  */
-const updateCounter = (counter: IMapped<number>, satisfied: IMapped<boolean>) => {
-  const updatedCounter = objectFromArray(
-    Object.keys(counter),
-    (x, y) => (satisfied[y] ? x[y] + 1 : x[y]),
-    counter,
+const precisionTracker = (bools: IMapped<boolean>[], precision: number[]) => {
+  return bools.reduce(
+    (counter, satisfied) =>
+      objectFromArray(precision, (x, y) => (satisfied[y] ? x[y] + 1 : x[y]), counter),
+    {} as IMapped<number>,
   );
-
-  return updatedCounter;
 };

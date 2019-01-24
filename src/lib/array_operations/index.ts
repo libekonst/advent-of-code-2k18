@@ -1,4 +1,3 @@
-import { multiply } from './multiply';
-import { sum } from './sum';
+import * as MathReducers from './math_reducers';
 
-export { multiply, sum };
+export { MathReducers };

@@ -1,6 +1,8 @@
-import { sum } from '../lib/array_operations';
-import { every, not, Predicate } from '../lib/predicates';
+import { MathReducers } from '../lib/array_operations';
+import { Combinators, Predicate } from '../lib/predicates';
 import parseInput from '../parseInput';
+const { not, every } = Combinators;
+const { sum } = MathReducers;
 
 export const summarized = (input: string): number => {
   const values = parseInput(input);

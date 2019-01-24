@@ -22,7 +22,11 @@ export const countDuplicates = (input: string[], precision: number[]) => {
 const precisionTracker = (bools: IMapped<boolean>[], precision: number[]) => {
   return bools.reduce(
     (counter, satisfied) =>
-      objectFromArray(precision, (x, y) => (satisfied[y] ? x[y] + 1 : x[y]), counter),
-    {} as IMapped<number>,
+      objectFromArray(
+        precision,
+        (temp, value) => (satisfied[value] ? counter[value] + 1 : temp[value]),
+        counter,
+      ),
+    objectFromArray(precision) as IMapped<number>, // Initial counter with 0 values.
   );
 };

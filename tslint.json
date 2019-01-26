@@ -8,6 +8,7 @@
   "rules": {
     "prettier": true,
     "interface-name": true,
-    "array-type": [true, "array"]
+    "array-type": [true, "array"],
+    "object-literal-sort-keys": false
   }
 }

@@ -1,4 +1,4 @@
-import input from './input';
+import input from '../input/input_1';
 import { summarized } from './summarize';
 
 const part1 = summarized(input);

@@ -1,6 +1,11 @@
 export interface IMapped<U> {
   [trackValue: string]: U;
 }
+export interface IParams<T, U> {
+  src: T[];
+  setValue?: (object: IMapped<U>, key: T) => U;
+  initObj?: IMapped<U>;
+}
 type Setter<U, T> = (object: IMapped<U>, key: T) => U;
 /**
  * Reduces `sourceArray` of type `Array<T>` to an object of type `IMapped<U>`, whose keys become the sourceArray elements
@@ -11,8 +16,9 @@ type Setter<U, T> = (object: IMapped<U>, key: T) => U;
  * @param initObj Object to use as an initial object. Defaults to empty object `{ }`.
  * @returns An `IMapped<U>` object, with each `sourceArray` element as the key and `U` as the value.
  */
-export const objectFromArray = <T, U>(
-  sourceArray: T[],
-  set: Setter<U, T> = x => 0 as any,
-  initObj: IMapped<U> = {},
-) => sourceArray.reduce((obj, key) => ({ ...obj, [`${key}`]: set(obj, key) }), initObj);
+export const objectFromArray = <T, U>({
+  src,
+  setValue = _ => 0 as any,
+  initObj = {} as IMapped<U>,
+}: IParams<T, U>): IMapped<U> =>
+  src.reduce((obj, key) => ({ ...obj, [`${key}`]: setValue(obj, key) }), initObj);

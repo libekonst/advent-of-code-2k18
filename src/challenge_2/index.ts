@@ -1,6 +1,6 @@
+import input from '../input/input_2';
 import parseInput from '../parseInput';
 import { checksum } from './checksum';
-import input from './input';
 import { intersection } from './intersection';
 // import { ICounter } from './reducers';
 

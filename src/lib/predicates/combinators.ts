@@ -5,7 +5,7 @@ import { Predicate } from './';
 export const not = <T>(func: Predicate<T>): Predicate<T> => (target: T) => !func(target);
 
 /**
- * Runs a collection of tests on a target of type `T` and returns whether every test is satisfied.
+ * Runs a collection of tests with a target of type `T` and returns whether every test is satisfied.
  * @param conditions An array of functions that accept an arg of type `T` and return `boolean`.
  * @returns A function that accepts a target `T`, runs all tests against it and returns whether they passed or not.
  */

@@ -9,7 +9,7 @@ import { IMapped, objectFromArray } from '../lib/array_operations/objectFromArra
  * @returns `IMapped<number>` An object counting the times a string satisfied a `precision` value.
  */
 export const countRepetitions = (input: string[], precision: number[]) => {
-  const exacts = input.map(takeExactly(precision));
+  const exacts = input.map(filterFrequency(precision));
   const flat = exacts.reduce((a, b) => [...a, ...b], []);
   const setValue = (_: any, value: number) => flat.filter(it => it === value).length;
 
@@ -17,18 +17,17 @@ export const countRepetitions = (input: string[], precision: number[]) => {
 };
 
 /**
- * Counts the occurances of each letter in a string. Then reduces them into an array
- * of unique values, keeping only those that are included in `precision`.
+ * Counts the occurances of each letter in a string and returns an array of unique values
+ * that are included in both `precision` and the occurances count.
  * @param precision The number of exact repetitions the caller is interested in.
  * @returns A function that takes the target string and returns the array of intersecting values.
  */
-export const takeExactly = (precision: number[]) => (word: string) => {
+export const filterFrequency = (precision: number[]) => (word: string) => {
+  const unique = [...new Set(precision)];
   const frequency = getLetterFrequencyTracker(word);
   const occurances = Object.values(frequency);
-  const filtered = occurances.filter(it => precision.includes(it));
-  const intersection = [...new Set(filtered)];
 
-  return intersection;
+  return unique.filter(x => occurances.includes(x));
 };
 
 /** Takes a string and counts the occurances of each letter in it, i.e. `{ a: 4, e: 6, n: 2}`. */

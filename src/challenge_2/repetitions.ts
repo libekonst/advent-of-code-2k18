@@ -1,4 +1,4 @@
-import { IMapped, objectFromArray } from '../lib/array_operations/objectFromArray';
+import { arrayToObject, IMapped } from '../lib/array_operations/';
 
 /**
  * Creates an `IMapped<number>` object, whose keys are the `precision` elements
@@ -13,7 +13,7 @@ export const countRepetitions = (input: string[], precision: number[]) => {
   const flat = exacts.reduce((a, b) => [...a, ...b], []);
   const setValue = (_: any, value: number) => flat.filter(it => it === value).length;
 
-  return objectFromArray<number, number>({ src: precision, setValue });
+  return arrayToObject<number, number>({ src: precision, setValue });
 };
 
 /**
@@ -32,7 +32,7 @@ export const filterFrequency = (precision: number[]) => (word: string) => {
 
 /** Takes a string and counts the occurances of each letter in it, i.e. `{ a: 4, e: 6, n: 2}`. */
 export const getLetterFrequencyTracker = (word: string): IMapped<number> => {
-  return objectFromArray({
+  return arrayToObject({
     src: word.split(''),
     setValue: (tracker, letter) => (tracker[letter] || 0) + 1,
   });

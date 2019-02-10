@@ -15,5 +15,6 @@ export const summarized = (input: string): number => {
 const parseNumbers = (values: string[], conditions: Predicate<number>[]): number[] => {
   const parsed = values.map(val => parseInt(val, 10));
   const filtered = parsed.filter(every(conditions));
+
   return filtered;
 };
